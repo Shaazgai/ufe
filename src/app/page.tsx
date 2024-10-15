@@ -258,20 +258,20 @@ const translations: Translations = {
     venue: 'Шангри-ла \n "Их танхим"',
     program: "Хөтөлбөр",
     programItems: [
-      "Зочдыг угтах үйл ажиллагаа",
-      "Нээлтийн ажиллагаа",
-      "Санхүүчдийн ундраа шинэчилсэн клип",
-      "Эдийн засаг, санхүүгийн тайлбар толийн нээлт",
-      '"Мөнгөн ирвэс" шагнал гардуулах ёслол',
+      "Зочдын угталт",
+      "Нээлт",
+      '"Санхүүчдийн ундраа” сүлд дуу',
+      "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол",
+      '“Мөнгөн ирвэс” шалгаруулах ёслол',
       "UFE CENTURY FUND",
       "Чөлөөт арга хэмжээ",
     ],
     featuredEvents: "Онцлох арга хэмжээ",
     carouselItems: [
       "Санхүүчдын ундраа",
-      "Санхүү эдийн засгийн тайлбар толь",
       "Эдийн засаг, санхүүгийн тайлбар толийн нээлт",
-      "UFE Century fund",
+      "“Мөнгөн ирвэс” шагнал гардуулах ёслол",
+      "",
     ],
     moreInfo: "Дэлгэрэнгүй мэдээлэл",
     rights: "All rights reserved, UFE © 2024",
@@ -283,24 +283,24 @@ const translations: Translations = {
   english: {
     greeting: "Dear honored guest",
     invitation:
-      "We invite you to attend the UFE 100th anniversary celebration reception.",
+      "Celebrate our grand anniversary with excitement, as we embark on this journey together.",
     venue: 'Shangri-La \n"Grand Ballroom"',
-    program: "Program",
+    program: "Agenda",
     programItems: [
-      "Guest reception",
-      "Opening ceremony",
-      "Premiere of the updated Financiers' Anthem clip",
-      "Launch of the Economics and Finance Explanatory Dictionary",
-      '"Silver Snow Leopard" award ceremony',
+      "Welcoming guests",
+      "Opening",
+      "UFE anthem premiere ",
+      "Economic and financial encyclopedia launch",
+      "Award ceremony",
       "UFE CENTURY FUND",
-      "Free networking event",
+      "Networking event",
     ],
     featuredEvents: "Featured Events",
     carouselItems: [
       "Financiers' Anthem",
-      "Economics and Finance Explanatory Dictionary",
       "Launch of the Economics and Finance Explanatory Dictionary",
-      "UFE Century Fund",
+      "Award ceremony",
+      "",
     ],
     moreInfo: "For more information",
     rights: "All rights reserved, UFE © 2024",
@@ -309,6 +309,19 @@ const translations: Translations = {
     minutes: "Minutes",
     seconds: "Seconds",
   },
+};
+const carouselBackgrounds: { [key: string]: string } = {
+  "Санхүүчдын ундраа": "bg-content1",
+  "Эдийн засаг, санхүүгийн тайлбар толийн нээлт": "bg-content2",
+  "“Мөнгөн ирвэс” шагнал гардуулах ёслол": "bg-content3",
+
+  "": "bg-content4",
+  "Financiers' Anthem": "bg-content1",
+  // "Economics and Finance Explanatory Dictionary": "bg-content3",
+  "Launch of the Economics and Finance Explanatory Dictionary": "bg-content2",
+  "Award ceremony": "bg-content3",
+
+  "": "bg-content4",
 };
 
 const Home: React.FC = () => {
@@ -350,7 +363,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div className="container max-w-[400px] h-screen m-auto flex flex-col justify-start items-center gap-10 overflow-x-hidden bg-white">
+      <div className="container max-w-[400px] h-screen m-auto flex flex-col justify-start items-center gap-8 overflow-x-hidden bg-white">
         <div className="flex justify-between items-center w-full px-4 pt-6">
           <Image
             src="/img/image.png"
@@ -377,8 +390,8 @@ const Home: React.FC = () => {
         >
           Your browser does not support the video tag.
         </video>
-        <div className="w-full bg-white text-white p-4 rounded-lg">
-          <div className="grid grid-cols-4 gap-2 text-center">
+        <div className="w-full bg-white text-white p-0 rounded-lg">
+          <div className="grid grid-cols-4 gap-4 text-center">
             <div className="bg-[#0f2091] p-2 rounded-lg">
               <div className="text-2xl font-bold">{timeLeft.days}</div>
               <div className="text-sm">{t.days}</div>
@@ -404,10 +417,10 @@ const Home: React.FC = () => {
         <div className="flex gap-2 w-full">
           <Link
             href="#"
-            className="px-5 py-4 flex gap-2 text-center items-center justify-around bg-[#0f2091] rounded-lg shadow-xl w-[50%]"
+            className="px-6 py-4 flex gap-2 text-center items-center justify-around bg-[#0f2091] rounded-lg shadow-xl w-[50%]"
           >
             <Location size="30" color="#ffffff" />
-            <h5 className="text-lg font-normal text-center text-white">
+            <h5 className="text-sm font-normal text-center text-white">
               {t.venue}
             </h5>
           </Link>
@@ -417,10 +430,10 @@ const Home: React.FC = () => {
           >
             <Calendar size="24" color="#ffffff" />
             <div>
-              <h5 className="flex items-center justify-center text-center text-lg font-normal text-white">
+              <h5 className="flex items-center justify-center text-center text-sm font-normal text-white">
                 2024.11.02
               </h5>
-              <h5 className="flex items-center justify-center text-center text-lg font-normal text-white">
+              <h5 className="flex items-center justify-center text-center text-sm font-normal text-white">
                 17:00
               </h5>
             </div>
@@ -457,7 +470,9 @@ const Home: React.FC = () => {
                   }`}
                 >
                   <div
-                    className={`h-[160px] border border-gray-800 bg-[#0f2091] rounded-2xl font-bold flex items-center justify-center text-center p-2 ${
+                    className={`h-[160px] border border-gray-800 ${
+                      carouselBackgrounds[item]
+                    } bg-cover bg-center font-bold flex items-end pb-2 justify-center rounded-xl bg-[#0f2091] border-hidden text-center p-2 ${
                       index === 0 ? "w-full" : "w-[400px]"
                     }`}
                   >
