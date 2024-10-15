@@ -93,7 +93,7 @@ const Home: React.FC = () => {
   return (
     <>
       <div className="container max-w-[400px] h-screen m-auto flex flex-col justify-start items-center gap-10 overflow-x-hidden bg-white">
-        <div className="flex justify-between items-center w-full px-4 pt-4">
+        <div className="flex justify-between items-center w-full px-4 pt-6">
           <Image
             src="/img/image.png"
             alt="ufe logo"
@@ -103,7 +103,7 @@ const Home: React.FC = () => {
           />
           <Button
             onClick={toggleLanguage}
-            className="bg-[#062365] text-white hover:hidden cursor-pointer"
+            className="bg-[#062365] text-white hover:bg-bg-[#062365] cursor-pointer"
           >
             {language === "mongolian" ? "EN" : "MN"}
           </Button>
