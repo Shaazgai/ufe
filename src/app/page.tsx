@@ -262,7 +262,7 @@ const translations: Translations = {
       "Нээлт",
       '"Санхүүчдийн ундраа” сүлд дуу',
       "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол",
-      '“Мөнгөн ирвэс” шалгаруулах ёслол',
+      "“Мөнгөн ирвэс” шалгаруулах ёслол",
       "UFE CENTURY FUND",
       "Чөлөөт арга хэмжээ",
     ],
@@ -270,7 +270,7 @@ const translations: Translations = {
     carouselItems: [
       '"Санхүүчдийн ундраа” сүлд дуу',
       "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол",
-      '“Мөнгөн ирвэс” шалгаруулах ёслол',
+      "“Мөнгөн ирвэс” шалгаруулах ёслол",
       "",
     ],
     moreInfo: "Дэлгэрэнгүй мэдээлэл",
@@ -313,10 +313,10 @@ const translations: Translations = {
 const carouselBackgrounds: { [key: string]: string } = {
   '"Санхүүчдийн ундраа” сүлд дуу': "bg-content1",
   "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол": "bg-content2",
-  '“Мөнгөн ирвэс” шалгаруулах ёслол': "bg-content3",
+  "“Мөнгөн ирвэс” шалгаруулах ёслол": "bg-content3",
 
   "": "bg-content4",
-  "Financiers' Anthem": "bg-content1",
+  "UFE anthem premiere": "bg-content1",
   // "Economics and Finance Explanatory Dictionary": "bg-content3",
   "Launch of the Economics and Finance Explanatory Dictionary": "bg-content2",
   "Award ceremony": "bg-content3",
