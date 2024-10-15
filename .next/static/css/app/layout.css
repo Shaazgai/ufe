@@ -862,7 +862,7 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 .bg-content1 {
-  background-image: url('/img/content1.jpg');
+  background-image: url('/img/content1.JPG');
 }
 .bg-content2 {
   background-image: url('/img/content2.png');
