@@ -312,15 +312,13 @@ const translations: Translations = {
 };
 const carouselBackgrounds: { [key: string]: string } = {
   '"Санхүүчдийн ундраа” сүлд дуу': "bg-content1",
+  //ene ygad
   "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол": "bg-content2",
   "“Мөнгөн ирвэс” шалгаруулах ёслол": "bg-content3",
-
   "": "bg-content4",
   "UFE anthem premiere": "bg-content1",
-  // "Economics and Finance Explanatory Dictionary": "bg-content3",
   "Launch of the Economics and Finance Explanatory Dictionary": "bg-content2",
   "Award ceremony": "bg-content3",
-
   "": "bg-content4",
 };
 
