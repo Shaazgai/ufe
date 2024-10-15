@@ -251,7 +251,7 @@ const Home: React.FC = () => {
             </div>
           </Link>
         </div>
-        <div className="p-6 bg-white w-full rounded-lg flex flex-col gap-4 text-[#3d4466]">
+        <div className="pl-6 pr-6 pt-6 pb-2 bg-white w-full rounded-lg flex flex-col gap-4 text-[#3d4466]">
           <p className="text-[#0f2091] font-bold text-xl text-center uppercase py-3">
             {t.program}
           </p>
@@ -267,24 +267,22 @@ const Home: React.FC = () => {
               </span>
             ))}
           </div> */}
-            <div className="pl-2 text-black grid gap-4">
-          {t.programItems.map((item: string, index: number) => (
-            <div
-              key={index}
-              className={`
+          <div className="pl-2 text-black grid gap-4">
+            {t.programItems.map((item: string, index: number) => (
+              <div
+                key={index}
+                className={`
                 flex items-center gap-4
                 ${index < t.programItems.length - 1 ? "border-b pb-3" : "pb-4"}
               `}
-            >
-              <span className="flex-shrink-0 w-6 h-6 bg-white text-[#0f2091] border-[1px] border-[#0f2091] rounded-full flex items-center justify-center text-sm font-bold">
-                {index + 1}
-              </span>
-              <span className="flex-grow items-center">
-                {item}
-              </span>
-            </div>
-          ))}
-        </div>
+              >
+                <span className="flex-shrink-0 w-6 h-6 bg-white text-[#0f2091] border-[1px] border-[#0f2091] rounded-full flex items-center justify-center text-sm font-bold">
+                  {index + 1}
+                </span>
+                <span className="flex-grow items-center">{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="text-[#0f2091] font-bold text-xl uppercase">
           {t.featuredEvents}
