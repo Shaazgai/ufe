@@ -268,9 +268,9 @@ const translations: Translations = {
     ],
     featuredEvents: "Онцлох арга хэмжээ",
     carouselItems: [
-      "Санхүүчдын ундраа",
-      "Эдийн засаг, санхүүгийн тайлбар толийн нээлт",
-      "“Мөнгөн ирвэс” шагнал гардуулах ёслол",
+      '"Санхүүчдийн ундраа” сүлд дуу',
+      "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол",
+      '“Мөнгөн ирвэс” шалгаруулах ёслол',
       "",
     ],
     moreInfo: "Дэлгэрэнгүй мэдээлэл",
@@ -289,7 +289,7 @@ const translations: Translations = {
     programItems: [
       "Welcoming guests",
       "Opening",
-      "UFE anthem premiere ",
+      "UFE anthem premiere",
       "Economic and financial encyclopedia launch",
       "Award ceremony",
       "UFE CENTURY FUND",
@@ -297,7 +297,7 @@ const translations: Translations = {
     ],
     featuredEvents: "Featured Events",
     carouselItems: [
-      "Financiers' Anthem",
+      "UFE anthem premiere",
       "Launch of the Economics and Finance Explanatory Dictionary",
       "Award ceremony",
       "",
@@ -311,9 +311,9 @@ const translations: Translations = {
   },
 };
 const carouselBackgrounds: { [key: string]: string } = {
-  "Санхүүчдын ундраа": "bg-content1",
-  "Эдийн засаг, санхүүгийн тайлбар толийн нээлт": "bg-content2",
-  "“Мөнгөн ирвэс” шагнал гардуулах ёслол": "bg-content3",
+  '"Санхүүчдийн ундраа” сүлд дуу': "bg-content1",
+  "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол": "bg-content2",
+  '“Мөнгөн ирвэс” шалгаруулах ёслол': "bg-content3",
 
   "": "bg-content4",
   "Financiers' Anthem": "bg-content1",
@@ -472,7 +472,7 @@ const Home: React.FC = () => {
                   <div
                     className={`h-[160px] border border-gray-800 ${
                       carouselBackgrounds[item]
-                    } bg-cover bg-center font-bold flex items-end pb-2 justify-center rounded-xl bg-[#0f2091] border-hidden text-center p-2 ${
+                    } bg-cover bg-center font-bold flex items-end pb-5 justify-center rounded-xl bg-[#0f2091] border-hidden text-center p-2 ${
                       index === 0 ? "w-full" : "w-[400px]"
                     }`}
                   >
