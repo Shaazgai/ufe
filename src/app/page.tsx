@@ -33,8 +33,8 @@ const translations: Translations = {
   mongolian: {
     greeting: "Эрхэм хүндэт таныг",
     invitation:
-      "UFE 100 жилийн ойн баярын хүндэтгэлийн арга хүлээн авалтанд хүрэлцэн ирэхийг урья.",
-    venue: 'Шангри-ла \n"Их танхим"',
+      "UFE 100 жилийн ойн баярын хүндэтгэлийн хүлээн авалтанд хүрэлцэн ирэхийг урья.",
+    venue: 'Шангри-ла \n "Их танхим"',
     program: "Хөтөлбөр",
     programItems: [
       "Зочдыг угтах үйл ажиллагаа",
@@ -127,16 +127,16 @@ const Home: React.FC = () => {
         <div className="flex gap-2 w-full">
           <Link
             href="#"
-            className="px-4 py-4 flex gap-2 text-center items-center justify-around bg-[#0f2091] rounded-xl shadow-xl w-[50%]"
+            className="px-5 py-4 flex gap-2 text-center items-center justify-around bg-[#0f2091] rounded-lg shadow-xl w-[50%]"
           >
-            <Location size="24" color="#ffffff" />
+            <Location size="30" color="#ffffff" />
             <h5 className="text-lg font-normal text-center text-white">
               {t.venue}
             </h5>
           </Link>
           <Link
             href="#"
-            className="w-[50%] flex gap-2 items-center justify-around px-4 py-4 bg-[#0f2091] rounded-xl shadow-xl border"
+            className="w-[50%] flex gap-2 items-center justify-around px-5 py-4 bg-[#0f2091] rounded-lg shadow-xl border"
           >
             <Calendar size="24" color="#ffffff" />
             <div>
@@ -180,7 +180,7 @@ const Home: React.FC = () => {
                   }`}
                 >
                   <div
-                    className={`h-[160px] border border-gray-800 bg-[#0f2091] rounded-2xl flex items-center justify-center text-center p-2 ${
+                    className={`h-[160px] border border-gray-800 bg-[#0f2091] rounded-2xl font-bold flex items-center justify-center text-center p-2 ${
                       index === 0 ? "w-full" : "w-[400px]"
                     }`}
                   >
