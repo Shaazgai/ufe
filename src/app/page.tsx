@@ -267,17 +267,17 @@ const Home: React.FC = () => {
           <p className="text-[#0f2091] font-bold text-xl text-center uppercase py-3">
             {t.program}
           </p>
-          <div className="pl-2 text-black grid gap-4">
+          <div className="pl-2 text-black grid gap-3">
             {t.programItems.map((item: string, index: number) => (
               <div
                 key={index}
                 className={`
-                flex items-center gap-4
+                flex items-center gap-2
                 ${index < t.programItems.length - 1 ? "border-b pb-3" : "pb-4"}
               `}
               >
                 <span>
-                <ArrowRight2 size="16" color="#0f0f0f" className="h-4 w-4 ml-2"/>
+                <ArrowRight2 size="16" color="#0f0f0f" className="h-4 w-4"/>
                 </span>
                 <span className="flex-grow items-center">{item}</span>
               </div>
