@@ -60,7 +60,7 @@ const config: Config = {
 			'content1': "url('/img/content1.JPG')",
 			'content2': "url('/img/content2.png')",
 			'content3': "url('/img/content3.png')",
-			'content4': "url('/img/content4.jpg')",
+			'content4': "url('/img/content4.png')",
 		  }
   	}
   },

@@ -8,8 +8,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { Calendar, Location, VolumeCross, VolumeHigh } from "iconsax-react";
-// import { VolumeHigh, VolumeCross } from "lucide-react";
+import { ArrowRight2, Calendar, Location, VolumeCross, VolumeHigh } from "iconsax-react";
 
 type Language = "mongolian" | "english";
 
@@ -44,18 +43,18 @@ const translations: Translations = {
     programItems: [
       "Зочдын угталт",
       "Нээлт",
-      '"Санхүүчдийн ундраа” сүлд дуу',
+      '"Санхүүчдийн ундраа" сүлд дуу',
       "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол",
-      "“Мөнгөн ирвэс” шалгаруулах ёслол",
+      '"Мөнгөн ирвэс" шалгаруулах ёслол',
       "UFE century fund",
       "Чөлөөт арга хэмжээ",
     ],
     featuredEvents: "Онцлох арга хэмжээ",
     carouselItems: [
-      '"Санхүүчдийн ундраа” сүлд дуу',
+      '"Санхүүчдийн ундраа" сүлд дуу',
       "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол",
-      "“Мөнгөн ирвэс” шалгаруулах ёслол",
-      "",
+      '"Мөнгөн ирвэс" шалгаруулах ёслол',
+      "UFE century fund",
     ],
     moreInfo: "Дэлгэрэнгүй мэдээлэл",
     rights: "All rights reserved, UFE © 2024",
@@ -84,7 +83,7 @@ const translations: Translations = {
       "UFE anthem premiere",
       "Launch of the Economics and Finance Explanatory Dictionary",
       "Award ceremony",
-      "",
+      "UFE century fund",
     ],
     moreInfo: "For more information",
     rights: "All rights reserved, UFE © 2024",
@@ -94,16 +93,16 @@ const translations: Translations = {
     seconds: "Seconds",
   },
 };
+
 const carouselBackgrounds: { [key: string]: string } = {
-  '"Санхүүчдийн ундраа” сүлд дуу': "bg-content1",
-  //ene ygad
+  '"Санхүүчдийн ундраа" сүлд дуу': "bg-content1",
   "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол": "bg-content2",
-  "“Мөнгөн ирвэс” шалгаруулах ёслол": "bg-content3",
+  '"Мөнгөн ирвэс" шалгаруулах ёслол': "bg-content3",
   "": "bg-content4",
   "UFE anthem premiere": "bg-content1",
   "Launch of the Economics and Finance Explanatory Dictionary": "bg-content2",
   "Award ceremony": "bg-content3",
-  "": "bg-content4",
+  "UFE century fund": "bg-content4",
 };
 
 const Home: React.FC = () => {
@@ -114,7 +113,6 @@ const Home: React.FC = () => {
     minutes: 0,
     seconds: 0,
   });
-  // const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -122,20 +120,31 @@ const Home: React.FC = () => {
     setLanguage(language === "mongolian" ? "english" : "mongolian");
   };
 
+  // const toggleAudio = () => {
+  //   if (audioRef.current) {
+  //     if (isMuted) {
+  //       audioRef.current.muted = false;
+  //       audioRef.current.play().catch((error) => console.error("Audio play failed:", error));
+  //     } else {
+  //       audioRef.current.muted = true;
+  //     }
+  //     setIsMuted(!isMuted);
+  //   }
+  // };
   const toggleAudio = () => {
     if (audioRef.current) {
       if (isMuted) {
         audioRef.current.muted = false;
-        audioRef.current
-          .play()
-          .catch((error) => console.error("Audio play failed:", error));
+        audioRef.current.play().catch((error) => console.error("Audio play failed:", error));
       } else {
         audioRef.current.muted = true;
-        audioRef.current.play();
       }
       setIsMuted(!isMuted);
     }
   };
+
+
+
   const t: TranslationContent = translations[language];
 
   useEffect(() => {
@@ -156,11 +165,19 @@ const Home: React.FC = () => {
         clearInterval(timer);
       }
     }, 1000);
+    
+    // if (audioRef.current) {
+    //   audioRef.current
+    //     .play()
+    //     .catch((error) => console.error("Audio initialization failed:", error));
+    // }
     if (audioRef.current) {
+      // Attempt to play audio automatically
       audioRef.current.muted = true;
-      audioRef.current
-        .play()
-        .catch((error) => console.error("Audio initialization failed:", error));
+      audioRef.current.play().catch((error) => {
+        console.error("Autoplay failed:", error);
+        setIsMuted(true);  // Set to muted if autoplay fails
+      });
     }
     return () => clearInterval(timer);
   }, []);
@@ -181,7 +198,7 @@ const Home: React.FC = () => {
               onClick={toggleAudio}
               className="bg-[#0f2091] text-white hover:bg-[#0f2091] cursor-pointer"
             >
-              {isMuted ? <VolumeCross size={20} /> : <VolumeHigh size={20} />}
+              {!isMuted ? <VolumeCross size={20} /> : <VolumeHigh size={20} />}
             </Button>
             <Button
               onClick={toggleLanguage}
@@ -255,18 +272,6 @@ const Home: React.FC = () => {
           <p className="text-[#0f2091] font-bold text-xl text-center uppercase py-3">
             {t.program}
           </p>
-          {/* <div className="pl-2 text-black grid gap-4">
-            {t.programItems.map((item: string, index: number) => (
-              <span
-                key={index}
-                className={
-                  index < t.programItems.length - 1 ? "border-b pb-3" : "pb-4"
-                }
-              >
-                {item}
-              </span>
-            ))}
-          </div> */}
           <div className="pl-2 text-black grid gap-4">
             {t.programItems.map((item: string, index: number) => (
               <div
@@ -276,8 +281,8 @@ const Home: React.FC = () => {
                 ${index < t.programItems.length - 1 ? "border-b pb-3" : "pb-4"}
               `}
               >
-                <span className="flex-shrink-0 w-6 h-6 bg-white text-[#0f2091] border-[1px] border-[#0f2091] rounded-full flex items-center justify-center text-sm font-bold">
-                  {index + 1}
+                <span>
+                <ArrowRight2 size="16" color="#0f0f0f" className="h-4 w-4 ml-2"/>
                 </span>
                 <span className="flex-grow items-center">{item}</span>
               </div>
@@ -338,7 +343,7 @@ const Home: React.FC = () => {
           <p className="text-black text-xs">{t.rights}</p>
         </footer>
       </div>
-      <audio ref={audioRef} loop autoPlay>
+      <audio ref={audioRef} loop>
         <source src="/img/intro.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
