@@ -113,7 +113,7 @@ const Home: React.FC = () => {
     minutes: 0,
     seconds: 0,
   });
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const toggleLanguage = (): void => {
@@ -134,10 +134,10 @@ const Home: React.FC = () => {
   const toggleAudio = () => {
     if (audioRef.current) {
       if (isMuted) {
-        audioRef.current.muted = false;
+        audioRef.current.muted = true;
         audioRef.current.play().catch((error) => console.error("Audio play failed:", error));
       } else {
-        audioRef.current.muted = true;
+        audioRef.current.muted = false;
       }
       setIsMuted(!isMuted);
     }
@@ -343,7 +343,7 @@ const Home: React.FC = () => {
           <p className="text-black text-xs">{t.rights}</p>
         </footer>
       </div>
-      <audio ref={audioRef} loop>
+      <audio ref={audioRef} loop autoPlay>
         <source src="/img/intro.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
