@@ -113,37 +113,28 @@ const Home: React.FC = () => {
     minutes: 0,
     seconds: 0,
   });
-  const [isMuted, setIsMuted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const toggleLanguage = (): void => {
     setLanguage(language === "mongolian" ? "english" : "mongolian");
   };
 
-  // const toggleAudio = () => {
-  //   if (audioRef.current) {
-  //     if (isMuted) {
-  //       audioRef.current.muted = false;
-  //       audioRef.current.play().catch((error) => console.error("Audio play failed:", error));
-  //     } else {
-  //       audioRef.current.muted = true;
-  //     }
-  //     setIsMuted(!isMuted);
-  //   }
-  // };
   const toggleAudio = () => {
     if (audioRef.current) {
-      if (isMuted) {
-        audioRef.current.muted = true;
-        audioRef.current.play().catch((error) => console.error("Audio play failed:", error));
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
       } else {
-        audioRef.current.muted = false;
+        audioRef.current.play()
+          .then(() => setIsPlaying(true))
+          .catch((error) => {
+            console.error("Audio play failed:", error);
+            alert("Failed to play audio. Please check your browser settings and try again.");
+          });
       }
-      setIsMuted(!isMuted);
     }
   };
-
-
 
   const t: TranslationContent = translations[language];
 
@@ -166,20 +157,24 @@ const Home: React.FC = () => {
       }
     }, 1000);
     
-    // if (audioRef.current) {
-    //   audioRef.current
-    //     .play()
-    //     .catch((error) => console.error("Audio initialization failed:", error));
-    // }
+
     if (audioRef.current) {
-      // Attempt to play audio automatically
-      audioRef.current.muted = true;
-      audioRef.current.play().catch((error) => {
-        console.error("Autoplay failed:", error);
-        setIsMuted(true);  // Set to muted if autoplay fails
-      });
+      audioRef.current.volume = 0.5; 
+      alert("This page contains audio content. Audio will start playing after you dismiss this message.");
+      audioRef.current.play()
+        .then(() => setIsPlaying(true))
+        .catch((error) => {
+          console.error("Audio play failed:", error);
+          alert("Failed to play audio. Please check your browser settings and try again.");
+        });
     }
-    return () => clearInterval(timer);
+
+    return () => {
+      clearInterval(timer);
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
   }, []);
 
   return (
@@ -198,7 +193,7 @@ const Home: React.FC = () => {
               onClick={toggleAudio}
               className="bg-[#0f2091] text-white hover:bg-[#0f2091] cursor-pointer"
             >
-              {!isMuted ? <VolumeCross size={20} /> : <VolumeHigh size={20} />}
+              {isPlaying ? <VolumeHigh size={20} /> : <VolumeCross size={20} />}
             </Button>
             <Button
               onClick={toggleLanguage}
@@ -209,7 +204,7 @@ const Home: React.FC = () => {
           </div>
         </div>
         <video
-          src="/banner.mp4"
+          src="/hello.mp4"
           autoPlay
           loop
           muted
@@ -343,8 +338,8 @@ const Home: React.FC = () => {
           <p className="text-black text-xs">{t.rights}</p>
         </footer>
       </div>
-      <audio ref={audioRef} loop autoPlay>
-        <source src="/img/intro.mp3" type="audio/mpeg" />
+      <audio ref={audioRef} loop>
+        <source src="/img/intro.mp3" type="audio/mpeg"/>
         Your browser does not support the audio element.
       </audio>
     </>
