@@ -8,16 +8,28 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { ArrowRight2, Calendar, Location, VolumeCross, VolumeHigh } from "iconsax-react";
+import {
+  ArrowRight2,
+  Calendar,
+  Location,
+  VolumeCross,
+  VolumeHigh,
+} from "iconsax-react";
+import Footer from "@/components/footer/footer";
 
 type Language = "mongolian" | "english";
+
+interface ProgramItem {
+  time: string;
+  content: string;
+}
 
 interface TranslationContent {
   greeting: string;
   invitation: string;
   venue: string;
   program: string;
-  programItems: string[];
+  programItems: ProgramItem[];
   featuredEvents: string;
   carouselItems: string[];
   moreInfo: string;
@@ -41,20 +53,29 @@ const translations: Translations = {
     venue: 'Шангри-ла \n "Их танхим"',
     program: "Хөтөлбөр",
     programItems: [
-      "Зочдын угталт",
-      "Нээлт",
-      '"Санхүүчдийн ундраа" сүлд дуу',
-      "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол",
-      '"Мөнгөн ирвэс" шалгаруулах ёслол',
-      "UFE century fund",
-      "Чөлөөт арга хэмжээ",
+      { time: "17:00", content: "Зочдын угталт" },
+      { time: "18:00", content: "Нээлтийн ёслол" },
+      {
+        time: "18:30",
+        content: '"Санхүүчдийн ундраа" сүлд дууны клипний нээлт',
+      },
+      {
+        time: "19:00",
+        content: "Эдийн засаг, санхүүгийн тайлбар толь бичгийн нээлт",
+      },
+      { time: "19:30", content: '"Мөнгөн ирвэс" шагнал гардуулах ёслол' },
+      { time: "20:00", content: "UFE Century сангийн нээлт" },
+      { time: "20:30", content: "Азтан шалгаруулах" },
+      { time: "21:00", content: "UFE next 100 дууны клипний нээлт" },
+      { time: "21:30", content: "Нэтворкинг" },
+      { time: "23:00", content: "Хаалт" },
     ],
     featuredEvents: "Онцлох арга хэмжээ",
     carouselItems: [
-      '"Санхүүчдийн ундраа" сүлд дуу',
-      "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол",
-      '"Мөнгөн ирвэс" шалгаруулах ёслол',
-      "UFE century fund",
+      '"Санхүүчдийн ундраа" сүлд дууны клипний нээлт',
+      "Эдийн засаг, санхүүгийн тайлбар толь бичгийн нээлт",
+      '"Мөнгөн ирвэс" гардуулах ёслол',
+      "UFE Century сангийн нээлт",
     ],
     moreInfo: "Дэлгэрэнгүй мэдээлэл",
     rights: "All rights reserved, UFE © 2024",
@@ -70,20 +91,29 @@ const translations: Translations = {
     venue: 'Shangri-La \n"Grand Ballroom"',
     program: "Agenda",
     programItems: [
-      "Welcoming guests",
-      "Opening",
-      "UFE anthem premiere",
-      "Economic and financial encyclopedia launch",
-      "Award ceremony",
-      "UFE century fund",
-      "Networking event",
+      { time: "17:00", content: "Welcoming guests" },
+      { time: "18:00", content: "Opening ceremony" },
+      {
+        time: "18:30",
+        content: 'Premiere of the "Sanhuuchdiin Undraa" Theme Song Video',
+      },
+      {
+        time: "19:00",
+        content: "Launch of the Economic and Financial Dictionary",
+      },
+      { time: "19:30", content: '"Mungun Irves" Award Ceremony' },
+      { time: "20:00", content: "Inauguration of the UFE Century Fund" },
+      { time: "20:30", content: "Prize Draw" },
+      { time: "21:00", content: 'Premiere of the "UFE Next 100" Song Video' },
+      { time: "21:30", content: "Networking Session" },
+      { time: "23:00", content: "Closing Ceremony" },
     ],
-    featuredEvents: "Featured Events",
+    featuredEvents: "Featured Event",
     carouselItems: [
-      "UFE anthem premiere",
-      "Launch of the Economics and Finance Explanatory Dictionary",
-      "Award ceremony",
-      "UFE century fund",
+      'Premiere of the "Sanhuuchdiin Undraa" Theme Song Video',
+      "Launch of the Economic and Financial Dictionary",
+      '"Mungun Irves" Award Ceremony',
+      "Inauguration of the UFE Century Fund",
     ],
     moreInfo: "For more information",
     rights: "All rights reserved, UFE © 2024",
@@ -95,14 +125,14 @@ const translations: Translations = {
 };
 
 const carouselBackgrounds: { [key: string]: string } = {
-  '"Санхүүчдийн ундраа" сүлд дуу': "bg-content1",
-  "Эдийн засаг, санхүүгийн тайлбар толь нээх ёслол": "bg-content2",
-  '"Мөнгөн ирвэс" шалгаруулах ёслол': "bg-content3",
-  "": "bg-content4",
-  "UFE anthem premiere": "bg-content1",
-  "Launch of the Economics and Finance Explanatory Dictionary": "bg-content2",
-  "Award ceremony": "bg-content3",
-  "UFE century fund": "bg-content4",
+  '"Санхүүчдийн ундраа" сүлд дууны клипний нээлт': "bg-content1",
+  "Эдийн засаг, санхүүгийн тайлбар толь бичгийн нээлт": "bg-content2",
+  '"Мөнгөн ирвэс" гардуулах ёслол': "bg-content3",
+  "UFE Century сангийн нээлт": "bg-content4",
+  'Premiere of the "Sanhuuchdiin Undraa" Theme Song Video': "bg-content1",
+  "Launch of the Economic and Financial Dictionary": "bg-content2",
+  '"Mungun Irves" Award Ceremony': "bg-content3",
+  "Inauguration of the UFE Century Fund": "bg-content4",
 };
 
 const Home: React.FC = () => {
@@ -126,11 +156,14 @@ const Home: React.FC = () => {
         audioRef.current.pause();
         setIsPlaying(false);
       } else {
-        audioRef.current.play()
+        audioRef.current
+          .play()
           .then(() => setIsPlaying(true))
           .catch((error) => {
             console.error("Audio play failed:", error);
-            alert("Failed to play audio. Please check your browser settings and try again.");
+            alert(
+              "Failed to play audio. Please check your browser settings and try again."
+            );
           });
       }
     }
@@ -156,16 +189,20 @@ const Home: React.FC = () => {
         clearInterval(timer);
       }
     }, 1000);
-    
 
     if (audioRef.current) {
-      audioRef.current.volume = 0.5; 
-      alert("This page contains audio content. Audio will start playing after you dismiss this message.");
-      audioRef.current.play()
+      audioRef.current.volume = 0.5;
+      alert(
+        "This page contains audio content. Audio will start playing after you dismiss this message."
+      );
+      audioRef.current
+        .play()
         .then(() => setIsPlaying(true))
         .catch((error) => {
           console.error("Audio play failed:", error);
-          alert("Failed to play audio. Please check your browser settings and try again.");
+          alert(
+            "Failed to play audio. Please check your browser settings and try again."
+          );
         });
     }
 
@@ -258,7 +295,7 @@ const Home: React.FC = () => {
                 2024.11.02
               </h5>
               <h5 className="flex items-center justify-center text-center text-sm font-normal text-white">
-                17:00
+                17:00-23:00
               </h5>
             </div>
           </Link>
@@ -268,18 +305,18 @@ const Home: React.FC = () => {
             {t.program}
           </p>
           <div className="pl-2 text-black grid gap-3">
-            {t.programItems.map((item: string, index: number) => (
+            {t.programItems.map((item, index: number) => (
               <div
                 key={index}
                 className={`
-                flex items-center gap-2
+                flex items-center gap-4
                 ${index < t.programItems.length - 1 ? "border-b pb-3" : "pb-4"}
               `}
               >
-                <span>
-                <ArrowRight2 size="16" color="#0f0f0f" className="h-4 w-4"/>
+                <span className="text-[#0f2091] font-medium min-w-[50px]">
+                  {item.time}
                 </span>
-                <span className="flex-grow items-center">{item}</span>
+                <span className="flex-grow items-center">{item.content}</span>
               </div>
             ))}
           </div>
@@ -322,8 +359,21 @@ const Home: React.FC = () => {
             </CarouselContent>
           </Carousel>
         </div>
+        <Footer />
+      </div>
+      <audio ref={audioRef} loop>
+        <source src="/img/intro.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </>
+  );
+};
 
-        <footer className="flex flex-col pb-10 gap-3 items-center border-t border-t-black w-full pt-6">
+export default Home;
+
+//old footer
+{
+  /* <footer className="flex flex-col pb-10 gap-3 items-center border-t border-t-black w-full pt-6">
           <p className="text-black font-medium text-xs">{t.moreInfo}</p>
           <p className="text-[#0f2091] text-3xl font-bold">7777-1100</p>
           <div className="mt-5">
@@ -336,14 +386,5 @@ const Home: React.FC = () => {
             />
           </div>
           <p className="text-black text-xs">{t.rights}</p>
-        </footer>
-      </div>
-      <audio ref={audioRef} loop>
-        <source src="/img/intro.mp3" type="audio/mpeg"/>
-        Your browser does not support the audio element.
-      </audio>
-    </>
-  );
-};
-
-export default Home;
+        </footer> */
+}
