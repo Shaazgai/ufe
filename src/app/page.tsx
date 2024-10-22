@@ -302,7 +302,7 @@ const Home: React.FC = () => {
         >
           Your browser does not support the video tag.
         </video>
-        <p className="text-black text-lg font-bold">Арга хэмжээ эхлэхэд</p>
+        {/* <p className="text-black text-lg font-bold">Арга хэмжээ эхлэхэд</p> */}
         <div className="w-full bg-white text-white p-0 rounded-lg">
           <div className="grid grid-cols-4 gap-4 text-center">
             <div className="bg-[#0f2091] p-2 rounded-lg">
