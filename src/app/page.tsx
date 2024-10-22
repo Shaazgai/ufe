@@ -74,7 +74,7 @@ const translations: Translations = {
     carouselItems: [
       '"Санхүүчдийн ундраа" сүлд дууны клипний нээлт',
       "Эдийн засаг, санхүүгийн тайлбар толь бичгийн нээлт",
-      '"Мөнгөн ирвэс" гардуулах ёслол',
+      '"Мөнгөн ирвэс" шагнал гардуулах ёслол',
       "UFE Century сангийн нээлт",
     ],
     moreInfo: "Дэлгэрэнгүй мэдээлэл",
@@ -127,7 +127,7 @@ const translations: Translations = {
 const carouselBackgrounds: { [key: string]: string } = {
   '"Санхүүчдийн ундраа" сүлд дууны клипний нээлт': "bg-content1",
   "Эдийн засаг, санхүүгийн тайлбар толь бичгийн нээлт": "bg-content2",
-  '"Мөнгөн ирвэс" гардуулах ёслол': "bg-content3",
+  '"Мөнгөн ирвэс" шагнал гардуулах ёслол': "bg-content3",
   "UFE Century сангийн нээлт": "bg-content4",
   'Premiere of the "Sanhuuchdiin Undraa" Theme Song Video': "bg-content1",
   "Launch of the Economic and Financial Dictionary": "bg-content2",
@@ -145,29 +145,80 @@ const Home: React.FC = () => {
   });
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [audioLoaded, setAudioLoaded] = useState(false);
 
   const toggleLanguage = (): void => {
     setLanguage(language === "mongolian" ? "english" : "mongolian");
   };
 
-  const toggleAudio = () => {
-    if (audioRef.current) {
+  // const toggleAudio = () => {
+  //   if (audioRef.current) {
+  //     if (isPlaying) {
+  //       audioRef.current.pause();
+  //       setIsPlaying(false);
+  //     } else {
+  //       audioRef.current
+  //         .play()
+  //         .then(() => setIsPlaying(true))
+  //         .catch((error) => {
+  //           console.error("Audio play failed:", error);
+  //           alert(
+  //             "Failed to play audio. Please check your browser settings and try again."
+  //           );
+  //         });
+  //     }
+  //   }
+  // };
+  const toggleAudio = async () => {
+    if (!audioRef.current) return;
+
+    try {
       if (isPlaying) {
         audioRef.current.pause();
         setIsPlaying(false);
       } else {
-        audioRef.current
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch((error) => {
-            console.error("Audio play failed:", error);
-            alert(
-              "Failed to play audio. Please check your browser settings and try again."
-            );
-          });
+        // Only attempt to play if the audio is loaded
+        if (audioLoaded) {
+          await audioRef.current.play();
+          setIsPlaying(true);
+        }
       }
+    } catch (error) {
+      console.error("Audio playback error:", error);
+      setIsPlaying(false);
     }
   };
+
+  const handleAudioLoad = () => {
+    setAudioLoaded(true);
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5;
+    }
+  };
+
+  // const handleAudioError = (error: Event) => {
+  //   console.error("Audio loading error:", error);
+  //   setAudioLoaded(false);
+  //   setIsPlaying(false);
+  // };
+  const handleAudioError = (event: ErrorEvent) => {
+    // Get the specific error details from the error event
+    const error = (event.target as HTMLAudioElement).error;
+    
+    console.error("Audio loading error:", {
+      code: error?.code,
+      message: error?.message,
+      // Common error codes:
+      // 1: MEDIA_ERR_ABORTED
+      // 2: MEDIA_ERR_NETWORK
+      // 3: MEDIA_ERR_DECODE
+      // 4: MEDIA_ERR_SRC_NOT_SUPPORTED
+    });
+    
+    setAudioLoaded(false);
+    setIsPlaying(false);
+  };
+
 
   const t: TranslationContent = translations[language];
 
@@ -251,6 +302,7 @@ const Home: React.FC = () => {
         >
           Your browser does not support the video tag.
         </video>
+        <p className="text-black text-lg font-bold">Арга хэмжээ эхлэхэд</p>
         <div className="w-full bg-white text-white p-0 rounded-lg">
           <div className="grid grid-cols-4 gap-4 text-center">
             <div className="bg-[#0f2091] p-2 rounded-lg">
@@ -361,7 +413,12 @@ const Home: React.FC = () => {
         </div>
         <Footer />
       </div>
-      <audio ref={audioRef} loop>
+      <audio
+        ref={audioRef}
+        onLoadedData={handleAudioLoad}
+        onError={(e) => handleAudioError(e as unknown as ErrorEvent)}
+        loop
+      >
         <source src="/img/intro.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
