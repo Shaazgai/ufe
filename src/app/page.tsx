@@ -56,18 +56,18 @@ const translations: Translations = {
       { time: "17:00", content: "Зочдын угталт" },
       { time: "18:00", content: "Нээлтийн ёслол" },
       {
-        time: "18:30",
+        time: "18:15",
         content: '"Санхүүчдийн ундраа" сүлд дууны клипний нээлт',
       },
       {
-        time: "19:00",
+        time: "18:30",
         content: "Эдийн засаг, санхүүгийн тайлбар толь бичгийн нээлт",
       },
       { time: "19:30", content: '"Мөнгөн ирвэс" шагнал гардуулах ёслол' },
       { time: "20:00", content: "UFE Century сангийн нээлт" },
-      { time: "20:30", content: "Азтан шалгаруулах" },
-      { time: "21:00", content: "UFE next 100 дууны клипний нээлт" },
-      { time: "21:30", content: "Нэтворкинг" },
+      { time: "20:10", content: "Азтан шалгаруулах" },
+      { time: "20:40", content: "UFE next 100 дууны клипний нээлт" },
+      { time: "21:00", content: "Нэтворкинг" },
       { time: "23:00", content: "Хаалт" },
     ],
     featuredEvents: "Онцлох арга хэмжээ",
@@ -94,18 +94,18 @@ const translations: Translations = {
       { time: "17:00", content: "Welcoming guests" },
       { time: "18:00", content: "Opening ceremony" },
       {
-        time: "18:30",
+        time: "18:15",
         content: 'Premiere of the "Sanhuuchdiin Undraa" Theme Song Video',
       },
       {
-        time: "19:00",
+        time: "18:30",
         content: "Launch of the Economic and Financial Dictionary",
       },
       { time: "19:30", content: '"Mungun Irves" Award Ceremony' },
       { time: "20:00", content: "Inauguration of the UFE Century Fund" },
-      { time: "20:30", content: "Prize Draw" },
-      { time: "21:00", content: 'Premiere of the "UFE Next 100" Song Video' },
-      { time: "21:30", content: "Networking Session" },
+      { time: "20:10", content: "Prize Draw" },
+      { time: "20:40", content: 'Premiere of the "UFE Next 100" Song Video' },
+      { time: "21:00", content: "Networking Session" },
       { time: "23:00", content: "Closing Ceremony" },
     ],
     featuredEvents: "Featured Event",
@@ -223,7 +223,7 @@ const Home: React.FC = () => {
   const t: TranslationContent = translations[language];
 
   useEffect(() => {
-    const targetDate = new Date("2024-11-02T17:00:00").getTime();
+    const targetDate = new Date("2024-11-01T17:00:00").getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
