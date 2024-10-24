@@ -344,7 +344,7 @@ const Home: React.FC = () => {
             <Calendar size="24" color="#ffffff" />
             <div>
               <h5 className="flex items-center justify-center text-center text-sm font-normal text-white">
-                2024.11.02
+                2024.11.01
               </h5>
               <h5 className="flex items-center justify-center text-center text-sm font-normal text-white">
                 17:00-23:00
